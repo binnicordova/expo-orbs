@@ -1,8 +1,8 @@
-// `@binnicordova/expo-thinking-orbs/engine`: pure geometry — zero React, zero React Native,
+// `expo-orbs/engine`: pure geometry — zero React, zero React Native,
 // zero DOM. Use it to drive your own renderer (a custom Skia canvas, an
 // offscreen canvas, an SVG exporter, a server-side rasteriser…).
 //
-//   import { MODE_FRAMES, resolvePreset } from '@binnicordova/expo-thinking-orbs/engine';
+//   import { MODE_FRAMES, resolvePreset } from 'expo-orbs/engine';
 //
 //   const { mode, speed, opts } = resolvePreset('searching', 64);
 //   const { dots, lines } = MODE_FRAMES[mode](64, elapsedSeconds * speed, opts);

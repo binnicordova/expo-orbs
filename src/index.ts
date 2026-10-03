@@ -1,4 +1,4 @@
-// expo-thinking-orbs — dotted thought-orb loading indicators for Expo.
+// expo-orbs — dotted thought-orb loading indicators for Expo.
 // iOS & Android render with Skia, web with a plain 2D canvas; all shared
 // state (theme, pause, speed, OS signals, the animation clock) lives in Jotai
 // atoms. Pure TypeScript: works in Expo Go and ships over expo-updates.

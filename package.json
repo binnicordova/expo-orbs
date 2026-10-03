@@ -1,5 +1,5 @@
 {
-  "name": "@binnicordova/expo-thinking-orbs",
+  "name": "expo-orbs",
   "version": "0.1.0",
   "description": "Dotted thought-orb loading indicators for AI & agent UIs in Expo — iOS, Android and web. Pure TypeScript with Jotai atomic state: works in Expo Go and ships over expo-updates.",
   "main": "build/index.js",
@@ -53,6 +53,7 @@
     "expo",
     "expo-go",
     "expo-updates",
+    "expo-orbs",
     "jotai",
     "atomic-state",
     "skia",
@@ -69,16 +70,19 @@
     "typescript",
     "ios",
     "android",
-    "web"
+    "web",
+    "orbs",
+    "thinking-orbs",
+    "thinking-indicator"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/binnicordova/expo-thinking-orbs.git"
+    "url": "git+https://github.com/binnicordova/expo-orbs.git"
   },
   "bugs": {
-    "url": "https://github.com/binnicordova/expo-thinking-orbs/issues"
+    "url": "https://github.com/binnicordova/expo-orbs/issues"
   },
-  "homepage": "https://github.com/binnicordova/expo-thinking-orbs#readme",
+  "homepage": "https://github.com/binnicordova/expo-orbs#readme",
   "author": "Binni Cordova <binni.2000.cordova@gmail.com> (https://github.com/binnicordova)",
   "contributors": [
     "Jakub Antalik (original thinking-orbs design & engine)"

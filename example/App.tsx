@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import type { OrbState, OrbTheme } from '@binnicordova/expo-thinking-orbs';
-import { ORB_LABELS, ORB_STATES, ThinkingOrb, useThinkingOrbs } from '@binnicordova/expo-thinking-orbs';
+import type { OrbState, OrbTheme } from 'expo-orbs';
+import { ORB_LABELS, ORB_STATES, ThinkingOrb, useThinkingOrbs } from 'expo-orbs';
 import { useState } from 'react';
 import type { ReactNode } from 'react';
 import { Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -54,7 +54,7 @@ function Showcase() {
         {/* header */}
         <View style={styles.row}>
           <ThinkingOrb state="working" size={20} />
-          <Text style={[styles.mono, { color: c.muted }]}>expo-thinking-orbs</Text>
+          <Text style={[styles.mono, { color: c.muted }]}>expo-orbs</Text>
         </View>
         <Text style={[styles.title, { color: c.text }]}>Thinking orbs</Text>
         <Text style={[styles.lede, { color: c.muted }]}>

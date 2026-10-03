@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "expo-thinking-orbs",
+      "name": "expo-orbs",
       "devDependencies": {
         "@babel/core": "^7.26.0",
         "@shopify/react-native-skia": "2.13.1",

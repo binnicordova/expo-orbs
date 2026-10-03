@@ -4,7 +4,7 @@ const { getDefaultConfig } = require('expo/metro-config');
 const path = require('path');
 
 const root = path.resolve(__dirname, '..');
-const PKG = require(path.join(root, 'package.json')).name; // @binnicordova/expo-thinking-orbs
+const PKG = require(path.join(root, 'package.json')).name; // expo-orbs
 const config = getDefaultConfig(__dirname);
 
 const escape = (p) => p.replace(/[/\\]/g, '[/\\\\]');

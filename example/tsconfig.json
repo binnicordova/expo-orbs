@@ -3,10 +3,10 @@
   "compilerOptions": {
     "strict": true,
     "paths": {
-      "@binnicordova/expo-thinking-orbs": [
+      "expo-orbs": [
         "../src/index"
       ],
-      "@binnicordova/expo-thinking-orbs/*": [
+      "expo-orbs/*": [
         "../src/*"
       ]
     }

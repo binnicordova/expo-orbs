@@ -1,8 +1,8 @@
 <p align="center">
-  <a href="https://binnicordova.com"><img src="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/hero.jpg" alt="expo-thinking-orbs — AI thinking indicators for Expo on iOS, Android and web, by BinniCordova.com" width="100%"></a>
+  <a href="https://binnicordova.com"><img src="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/hero.jpg" alt="expo-orbs — AI thinking indicators for Expo on iOS, Android and web, by BinniCordova.com" width="100%"></a>
 </p>
 
-<h1 align="center">expo-thinking-orbs</h1>
+<h1 align="center">expo-orbs</h1>
 
 <p align="center">
   <b>Dotted thought-orb loading indicators for AI &amp; agent UIs — iOS, Android and web.</b><br/>
@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/@binnicordova/expo-thinking-orbs"><img alt="npm" src="https://img.shields.io/npm/v/@binnicordova/expo-thinking-orbs?style=flat-square&color=111111"></a>
+  <a href="https://www.npmjs.com/package/expo-orbs"><img alt="npm" src="https://img.shields.io/npm/v/expo-orbs?style=flat-square&color=111111"></a>
   <img alt="Expo SDK 58+" src="https://img.shields.io/badge/Expo%20SDK-58%2B-000020?style=flat-square&logo=expo">
   <img alt="Platforms" src="https://img.shields.io/badge/platforms-iOS%20%7C%20Android%20%7C%20Web-0ea5e9?style=flat-square">
   <img alt="Expo Go" src="https://img.shields.io/badge/Expo%20Go-ready-16a34a?style=flat-square">
@@ -24,7 +24,7 @@
 </p>
 
 <p align="center">
-  <picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/orbs-grid-dark.gif"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/orbs-grid-light.gif"><img src="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/orbs-grid-dark.gif" alt="All nine thinking-orb states animating, each at the 64 and 20 sizes" width="660"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/orbs-grid-dark.gif"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/orbs-grid-light.gif"><img src="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/orbs-grid-dark.gif" alt="All nine thinking-orb states animating, each at the 64 and 20 sizes" width="660"></picture>
 </p>
 
 ---
@@ -41,8 +41,8 @@ It is a TypeScript-only port of [thinking-orbs](https://github.com/Jakubantalik/
 
 <table>
   <tr>
-    <td align="center" valign="top" width="45%"><img src="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/app-demo-dark.gif" alt="The example app: tapping through states, switching theme, scrolling the grid" width="300"><br/><sub>The example app — tap a state, flip the theme, every orb follows the same atoms</sub></td>
-    <td align="center" valign="top"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/chat-dark.gif"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/chat-light.gif"><img src="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/chat-dark.gif" alt="An AI agent's steps in a chat: searching, solving, then composing a reply" width="420"></picture><br/><sub>Inline at size 20: one orb per agent step</sub></td>
+    <td align="center" valign="top" width="45%"><img src="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/app-demo-dark.gif" alt="The example app: tapping through states, switching theme, scrolling the grid" width="300"><br/><sub>The example app — tap a state, flip the theme, every orb follows the same atoms</sub></td>
+    <td align="center" valign="top"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/chat-dark.gif"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/chat-light.gif"><img src="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/chat-dark.gif" alt="An AI agent's steps in a chat: searching, solving, then composing a reply" width="420"></picture><br/><sub>Inline at size 20: one orb per agent step</sub></td>
   </tr>
 </table>
 
@@ -52,10 +52,8 @@ It is a TypeScript-only port of [thinking-orbs](https://github.com/Jakubantalik/
 
 **1 — Install** (`expo install` picks the Skia version that matches your SDK)
 
-> The package is published under the `@binnicordova` scope.
-
 ```sh
-npx expo install @binnicordova/expo-thinking-orbs jotai @shopify/react-native-skia
+npx expo install expo-orbs jotai @shopify/react-native-skia
 ```
 
 > Web-only project? Add `react-dom react-native-web`. Skia is never loaded on web.
@@ -63,7 +61,7 @@ npx expo install @binnicordova/expo-thinking-orbs jotai @shopify/react-native-sk
 **2 — Import**
 
 ```tsx
-import { ThinkingOrb } from '@binnicordova/expo-thinking-orbs';
+import { ThinkingOrb } from 'expo-orbs';
 ```
 
 **3 — Render**
@@ -80,15 +78,15 @@ Nine verbs an agent can be doing, each a distinct animation:
 
 <table>
   <tr><th></th><th><code>state</code></th><th>Animation</th><th>Default label</th></tr>
-  <tr><td><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/state-working-dark.gif"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/state-working-light.gif"><img src="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/state-working-dark.gif" alt="working orb" width="72"></picture></td><td><code>working</code></td><td>particles on tilted orbits</td><td>Working…</td></tr>
-  <tr><td><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/state-searching-dark.gif"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/state-searching-light.gif"><img src="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/state-searching-dark.gif" alt="searching orb" width="72"></picture></td><td><code>searching</code></td><td>a scan meridian sweeps a dotted globe</td><td>Searching…</td></tr>
-  <tr><td><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/state-solving-dark.gif"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/state-solving-light.gif"><img src="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/state-solving-dark.gif" alt="solving orb" width="72"></picture></td><td><code>solving</code></td><td>bands scramble in quarter turns, then click back solved</td><td>Solving…</td></tr>
-  <tr><td><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/state-listening-dark.gif"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/state-listening-light.gif"><img src="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/state-listening-dark.gif" alt="listening orb" width="72"></picture></td><td><code>listening</code></td><td>a waveform rolls through latitude rings</td><td>Listening…</td></tr>
-  <tr><td><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/state-connecting-dark.gif"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/state-connecting-light.gif"><img src="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/state-connecting-dark.gif" alt="connecting orb" width="72"></picture></td><td><code>connecting</code></td><td>a constellation wires itself, packets running the edges</td><td>Connecting…</td></tr>
-  <tr><td><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/state-weaving-dark.gif"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/state-weaving-light.gif"><img src="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/state-weaving-dark.gif" alt="weaving orb" width="72"></picture></td><td><code>weaving</code></td><td>three strands plait around the sphere</td><td>Weaving…</td></tr>
-  <tr><td><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/state-composing-dark.gif"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/state-composing-light.gif"><img src="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/state-composing-dark.gif" alt="composing orb" width="72"></picture></td><td><code>composing</code></td><td>an undulating multi-band sash</td><td>Composing…</td></tr>
-  <tr><td><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/state-breathing-dark.gif"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/state-breathing-light.gif"><img src="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/state-breathing-dark.gif" alt="breathing orb" width="72"></picture></td><td><code>breathing</code></td><td>a face-on ring slowly morphing</td><td>Thinking…</td></tr>
-  <tr><td><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/state-shaping-dark.gif"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/state-shaping-light.gif"><img src="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/state-shaping-dark.gif" alt="shaping orb" width="72"></picture></td><td><code>shaping</code></td><td>a dotted outline morphs circle → triangle → square</td><td>Shaping…</td></tr>
+  <tr><td><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/state-working-dark.gif"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/state-working-light.gif"><img src="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/state-working-dark.gif" alt="working orb" width="72"></picture></td><td><code>working</code></td><td>particles on tilted orbits</td><td>Working…</td></tr>
+  <tr><td><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/state-searching-dark.gif"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/state-searching-light.gif"><img src="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/state-searching-dark.gif" alt="searching orb" width="72"></picture></td><td><code>searching</code></td><td>a scan meridian sweeps a dotted globe</td><td>Searching…</td></tr>
+  <tr><td><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/state-solving-dark.gif"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/state-solving-light.gif"><img src="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/state-solving-dark.gif" alt="solving orb" width="72"></picture></td><td><code>solving</code></td><td>bands scramble in quarter turns, then click back solved</td><td>Solving…</td></tr>
+  <tr><td><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/state-listening-dark.gif"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/state-listening-light.gif"><img src="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/state-listening-dark.gif" alt="listening orb" width="72"></picture></td><td><code>listening</code></td><td>a waveform rolls through latitude rings</td><td>Listening…</td></tr>
+  <tr><td><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/state-connecting-dark.gif"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/state-connecting-light.gif"><img src="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/state-connecting-dark.gif" alt="connecting orb" width="72"></picture></td><td><code>connecting</code></td><td>a constellation wires itself, packets running the edges</td><td>Connecting…</td></tr>
+  <tr><td><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/state-weaving-dark.gif"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/state-weaving-light.gif"><img src="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/state-weaving-dark.gif" alt="weaving orb" width="72"></picture></td><td><code>weaving</code></td><td>three strands plait around the sphere</td><td>Weaving…</td></tr>
+  <tr><td><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/state-composing-dark.gif"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/state-composing-light.gif"><img src="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/state-composing-dark.gif" alt="composing orb" width="72"></picture></td><td><code>composing</code></td><td>an undulating multi-band sash</td><td>Composing…</td></tr>
+  <tr><td><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/state-breathing-dark.gif"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/state-breathing-light.gif"><img src="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/state-breathing-dark.gif" alt="breathing orb" width="72"></picture></td><td><code>breathing</code></td><td>a face-on ring slowly morphing</td><td>Thinking…</td></tr>
+  <tr><td><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/state-shaping-dark.gif"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/state-shaping-light.gif"><img src="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/state-shaping-dark.gif" alt="shaping orb" width="72"></picture></td><td><code>shaping</code></td><td>a dotted outline morphs circle → triangle → square</td><td>Shaping…</td></tr>
 </table>
 
 ## Sizes
@@ -143,7 +141,7 @@ Every piece of shared state is a small atom. Orbs subscribe only to what they ne
 ### Steer every orb with one hook
 
 ```tsx
-import { useThinkingOrbs } from '@binnicordova/expo-thinking-orbs';
+import { useThinkingOrbs } from 'expo-orbs';
 
 function OrbSettings() {
   const { theme, setTheme, paused, togglePaused, speed, setSpeed, isDark, reduceMotion } =
@@ -165,7 +163,7 @@ The orbs live in their own store, `thinkingOrbsStore`, so they never collide wit
 
 ```tsx
 import { useAtomValue, useSetAtom } from 'jotai';
-import { orbsPausedAtom, reduceMotionAtom, useOrbStore } from '@binnicordova/expo-thinking-orbs';
+import { orbsPausedAtom, reduceMotionAtom, useOrbStore } from 'expo-orbs';
 
 const store = useOrbStore();
 const pauseAll = useSetAtom(orbsPausedAtom, { store });
@@ -177,7 +175,7 @@ const reduced = useAtomValue(reduceMotionAtom, { store });
 Services, websocket handlers and tests can set atoms directly:
 
 ```ts
-import { orbThemeAtom, orbsPausedAtom, thinkingOrbsStore } from '@binnicordova/expo-thinking-orbs';
+import { orbThemeAtom, orbsPausedAtom, thinkingOrbsStore } from 'expo-orbs';
 
 socket.on('agent:idle', () => thinkingOrbsStore.set(orbsPausedAtom, true));
 socket.on('agent:busy', () => thinkingOrbsStore.set(orbsPausedAtom, false));
@@ -190,7 +188,7 @@ Want the orbs inside your app's Jotai store (to see them in Jotai DevTools, or t
 
 ```tsx
 import { createStore } from 'jotai';
-import { ThinkingOrbsProvider } from '@binnicordova/expo-thinking-orbs';
+import { ThinkingOrbsProvider } from 'expo-orbs';
 
 const appStore = createStore();
 
@@ -202,7 +200,7 @@ const appStore = createStore();
 ## Real use cases
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/use-cases.jpg" alt="Use cases: an AI chat that is searching, a voice assistant that is listening, a coding agent that is solving" width="100%">
+  <img src="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/use-cases.jpg" alt="Use cases: an AI chat that is searching, a voice assistant that is listening, a coding agent that is solving" width="100%">
 </p>
 
 ### 🤖 Map agent tool calls to states
@@ -314,12 +312,12 @@ So:
 | `ORB_STATES`, `ORB_SIZES`, `ORB_LABELS` | constants | For pickers and menus. |
 | `MODE_FRAMES`, `resolvePreset`, `STATE_TO_MODE` | engine | For custom renderers. |
 
-### `@binnicordova/expo-thinking-orbs/engine`
+### `expo-orbs/engine`
 
 The geometry on its own, with zero React, React Native or DOM, for custom renderers (an SVG exporter, a server-side rasteriser, your own Skia scene):
 
 ```ts
-import { MODE_FRAMES, inkGrey, resolvePreset } from '@binnicordova/expo-thinking-orbs/engine';
+import { MODE_FRAMES, inkGrey, resolvePreset } from 'expo-orbs/engine';
 
 const { mode, speed, opts } = resolvePreset('searching', 64);
 const { dots, lines } = MODE_FRAMES[mode](64, elapsedSeconds * speed, opts);
@@ -383,7 +381,7 @@ npm publish             # publishConfig.access is already "public"
 ## About the creator
 
 <p align="center">
-  <a href="https://binnicordova.com"><img src="https://raw.githubusercontent.com/binnicordova/expo-thinking-orbs/main/docs/images/creator.jpg" alt="BinniCordova.com — Expo & React Native open-source modules" width="100%"></a>
+  <a href="https://binnicordova.com"><img src="https://raw.githubusercontent.com/binnicordova/expo-orbs/main/docs/images/creator.jpg" alt="BinniCordova.com — Expo & React Native open-source modules" width="100%"></a>
 </p>
 
 **Binni Cordova** builds Expo and React Native modules that run in Expo Go and ship over the air: pure TypeScript, no native code, iOS, Android and web from one codebase.
@@ -392,7 +390,7 @@ npm publish             # publishConfig.access is already "public"
 - 🐙 GitHub: [@binnicordova](https://github.com/binnicordova)
 - 📦 More modules: [expo-useanimations](https://github.com/binnicordova/expo-useanimations) · [expo-logs](https://github.com/binnicordova/expo-logs) · [expo-atoms](https://github.com/binnicordova/expo-atoms)
 
-Using expo-thinking-orbs in an app? Open an issue or say hi on [BinniCordova.com](https://binnicordova.com) — I'd love to see it.
+Using expo-orbs in an app? Open an issue or say hi on [BinniCordova.com](https://binnicordova.com) — I'd love to see it.
 
 ## Credits & license
 

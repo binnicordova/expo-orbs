@@ -1,14 +1,14 @@
 {
   "expo": {
     "name": "Thinking Orbs",
-    "slug": "expo-thinking-orbs-example",
+    "slug": "expo-orbs-example",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "expo.modules.thinkingorbs.example"
+      "bundleIdentifier": "expo.modules.orbs.example"
     },
     "android": {
       "adaptiveIcon": {
@@ -18,16 +18,16 @@
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
       "predictiveBackGestureEnabled": false,
-      "package": "expo.modules.thinkingorbs.example"
+      "package": "expo.modules.orbs.example"
     },
     "web": {
       "favicon": "./assets/favicon.png",
       "output": "single",
-      "name": "expo-thinking-orbs"
+      "name": "expo-orbs"
     },
     "plugins": [
       "expo-status-bar"
     ],
-    "scheme": "thinkingorbs"
+    "scheme": "expoorbs"
   }
 }
