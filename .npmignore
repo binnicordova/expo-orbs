@@ -1,0 +1,12 @@
+# `files` in package.json is the allow-list; this is a safety net.
+/.*/
+/*.tgz
+__mocks__
+__tests__
+/example/
+/internal/
+/docs/
+/babel.config.js
+/eslint.config.cjs
+/bun.lock
+/scripts/

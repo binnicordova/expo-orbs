@@ -1,0 +1,132 @@
+{
+  "name": "@binnicordova/expo-thinking-orbs",
+  "version": "0.1.0",
+  "description": "Dotted thought-orb loading indicators for AI & agent UIs in Expo — iOS, Android and web. Pure TypeScript with Jotai atomic state: works in Expo Go and ships over expo-updates.",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./build/index.d.ts",
+      "default": "./build/index.js"
+    },
+    "./engine": {
+      "types": "./build/engine/index.d.ts",
+      "default": "./build/engine/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "typesVersions": {
+    "*": {
+      "engine": [
+        "build/engine/index.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "build",
+    "src",
+    "!**/__tests__",
+    "!**/__mocks__",
+    "!**/*.tsbuildinfo",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "node internal/module_scripts/build.js",
+    "clean": "node internal/module_scripts/clean.js",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src/",
+    "test": "node internal/module_scripts/test.js",
+    "prepare": "node internal/module_scripts/prepare.js",
+    "prepublishOnly": "bun run clean && bun run typecheck && CI=1 bun run test && bun run lint && bun run prepare",
+    "example": "cd example && bunx expo start",
+    "example:ios": "cd example && bunx expo start --ios",
+    "example:android": "cd example && bunx expo start --android",
+    "example:web": "cd example && bunx expo start --web",
+    "gifs": "bun build src/engine/index.ts --format esm --outfile scripts/gifs/engine.js && node scripts/gifs/record.mjs docs/images",
+    "gifs:app": "cd example && bunx expo export --platform web && cd .. && node scripts/gifs/app-demo.mjs example/dist docs/images/app-demo-dark.gif dark"
+  },
+  "keywords": [
+    "react-native",
+    "expo",
+    "expo-go",
+    "expo-updates",
+    "jotai",
+    "atomic-state",
+    "skia",
+    "canvas",
+    "loading",
+    "loader",
+    "spinner",
+    "ai",
+    "agent",
+    "llm",
+    "thinking",
+    "animation",
+    "dark-mode",
+    "typescript",
+    "ios",
+    "android",
+    "web"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/binnicordova/expo-thinking-orbs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/binnicordova/expo-thinking-orbs/issues"
+  },
+  "homepage": "https://github.com/binnicordova/expo-thinking-orbs#readme",
+  "author": "Binni Cordova <binni.2000.cordova@gmail.com> (https://github.com/binnicordova)",
+  "contributors": [
+    "Jakub Antalik (original thinking-orbs design & engine)"
+  ],
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@shopify/react-native-skia": ">=2.0.0",
+    "expo": ">=58.0.0-0",
+    "jotai": ">=2.10.0",
+    "react": "*",
+    "react-native": "*"
+  },
+  "peerDependenciesMeta": {
+    "expo": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@shopify/react-native-skia": "2.13.1",
+    "@types/jest": "^29.5.14",
+    "@types/react": "~19.3.0",
+    "babel-preset-expo": "~58.0.9",
+    "eslint": "~9.39.4",
+    "eslint-config-universe": "^15.0.3",
+    "expo": "~58.0.3",
+    "jest": "^29.7.0",
+    "jest-expo": "~58.0.7",
+    "jotai": "^3.0.1",
+    "playwright-core": "^1.56.0",
+    "prettier": "^3.0.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-native": "0.88.0-rc.3",
+    "react-native-web": "~0.21.3",
+    "serve-handler": "^6.1.6",
+    "typescript": "^5.9.2"
+  },
+  "jest": {
+    "preset": "jest-expo",
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "transformIgnorePatterns": [
+      "/node_modules/(?!(.pnpm|react-native|@react-native|@react-native-community|expo|@expo|jotai|@shopify/react-native-skia))"
+    ]
+  }
+}

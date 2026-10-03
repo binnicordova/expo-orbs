@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+  html, body { margin: 0; background: #000; }
+  canvas { display: block; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script type="module">
+import { MODE_FRAMES, resolvePreset, inkGrey, ORB_STATES, ORB_LABELS } from './engine.js';
+
+const THEMES = {
+  dark: { bg: '#0B0B0C', card: '#141416', line: '#242428', text: '#EDEDEB', muted: '#86868B', chip: '#1D1D20', dark: true },
+  light: { bg: '#F5F5F2', card: '#FFFFFF', line: '#E3E3DE', text: '#111111', muted: '#6E6E6A', chip: '#EDEDE8', dark: false },
+};
+const MONO = '"DejaVu Sans Mono", monospace';
+const SANS = 'Inter, "DejaVu Sans", sans-serif';
+
+function drawOrb(ctx, state, size, t, dark, x, y, drawSize = size) {
+  const preset = size < 42 ? 20 : 64;
+  const { mode, speed, opts } = resolvePreset(state, preset);
+  const frame = MODE_FRAMES[mode](drawSize, t * speed, opts);
+  ctx.save();
+  ctx.translate(x, y);
+  for (const l of frame.lines) {
+    const g = inkGrey(l.white, dark);
+    ctx.strokeStyle = `rgba(${g},${g},${g},${l.a ?? 1})`;
+    ctx.lineWidth = l.w;
+    ctx.beginPath(); ctx.moveTo(l.x1, l.y1); ctx.lineTo(l.x2, l.y2); ctx.stroke();
+  }
+  for (const d of frame.dots) {
+    const g = inkGrey(d.white, dark);
+    ctx.fillStyle = `rgba(${g},${g},${g},${d.a ?? 1})`;
+    ctx.beginPath(); ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2); ctx.fill();
+  }
+  ctx.restore();
+}
+
+function rrect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+}
+
+// ---------------------------------------------------------------- scenes
+const scenes = {
+  // 3x3 grid: every state at 64 and 20, labelled
+  grid: {
+    w: 660, h: 552,
+    draw(ctx, t, th) {
+      ctx.fillStyle = th.bg; ctx.fillRect(0, 0, this.w, this.h);
+      const cw = 204, ch = 168, gap = 12, ox = 18, oy = 18;
+      ORB_STATES.forEach((s, i) => {
+        const cx = ox + (i % 3) * (cw + gap), cy = oy + Math.floor(i / 3) * (ch + gap);
+        rrect(ctx, cx, cy, cw, ch, 16); ctx.fillStyle = th.card; ctx.fill();
+        ctx.strokeStyle = th.line; ctx.lineWidth = 1; ctx.stroke();
+        drawOrb(ctx, s, 64, t, th.dark, cx + cw / 2 - 52, cy + 26);
+        drawOrb(ctx, s, 20, t, th.dark, cx + cw / 2 + 24, cy + 48);
+        ctx.fillStyle = th.text; ctx.font = `14px ${MONO}`; ctx.textAlign = 'center';
+        ctx.fillText(s, cx + cw / 2, cy + 128);
+        ctx.fillStyle = th.muted; ctx.font = `11px ${MONO}`;
+        ctx.fillText(ORB_LABELS[s], cx + cw / 2, cy + 148);
+      });
+    },
+  },
+  // one orb, for the states table
+  single: {
+    w: 112, h: 112,
+    draw(ctx, t, th, state) {
+      ctx.fillStyle = th.bg; ctx.fillRect(0, 0, this.w, this.h);
+      drawOrb(ctx, state, 64, t, th.dark, 8, 8, 96);
+    },
+  },
+  // a wide strip of all nine at 64 — the README hero
+  strip: {
+    w: 900, h: 120,
+    draw(ctx, t, th) {
+      ctx.fillStyle = th.bg; ctx.fillRect(0, 0, this.w, this.h);
+      ORB_STATES.forEach((s, i) => drawOrb(ctx, s, 64, t, th.dark, 20 + i * 97, 12, 76));
+      ctx.fillStyle = th.muted; ctx.font = `10px ${MONO}`; ctx.textAlign = 'center';
+      ORB_STATES.forEach((s, i) => ctx.fillText(s, 20 + i * 97 + 38, 108));
+    },
+  },
+  // an agent working through steps in a chat
+  chat: {
+    w: 560, h: 330,
+    draw(ctx, t, th) {
+      ctx.fillStyle = th.bg; ctx.fillRect(0, 0, this.w, this.h);
+      rrect(ctx, 16, 16, this.w - 32, this.h - 32, 20); ctx.fillStyle = th.card; ctx.fill();
+      ctx.strokeStyle = th.line; ctx.stroke();
+      // user bubble
+      ctx.font = `15px ${SANS}`; ctx.textAlign = 'left';
+      const q = 'Why is the Android build failing?';
+      const qw = ctx.measureText(q).width + 28;
+      rrect(ctx, this.w - 40 - qw, 40, qw, 40, 14); ctx.fillStyle = th.chip; ctx.fill();
+      ctx.fillStyle = th.text; ctx.fillText(q, this.w - 40 - qw + 14, 65);
+      // agent steps, revealed over a 9 s cycle
+      const steps = [
+        ['searching', 'Searching the repository…', 0],
+        ['solving', 'Solving a dependency conflict…', 2.4],
+        ['composing', 'Composing a reply…', 4.8],
+      ];
+      const cyc = t % 9.6;
+      steps.forEach(([s, label, at], i) => {
+        if (cyc < at) return;
+        const y = 104 + i * 38;
+        const active = cyc < (steps[i + 1]?.[2] ?? 7.4);
+        const a = Math.min(1, (cyc - at) / 0.25);
+        ctx.globalAlpha = a;
+        if (active) drawOrb(ctx, s, 20, t, th.dark, 40, y);
+        else { ctx.fillStyle = th.muted; ctx.font = `15px ${SANS}`; ctx.fillText('✓', 44, y + 15); }
+        ctx.fillStyle = active ? th.text : th.muted; ctx.font = `15px ${SANS}`;
+        ctx.fillText(active ? label : label.replace('…', ''), 72, y + 15);
+        ctx.globalAlpha = 1;
+      });
+      if (cyc >= 7.4) {
+        const a = Math.min(1, (cyc - 7.4) / 0.3);
+        ctx.globalAlpha = a; ctx.fillStyle = th.text; ctx.font = `15px ${SANS}`;
+        ctx.fillText('Two packages pin different React Native versions.', 40, 236);
+        ctx.fillStyle = th.muted;
+        ctx.fillText('Run `npx expo install --fix` to align them.', 40, 262);
+        ctx.globalAlpha = 1;
+      }
+    },
+  },
+};
+
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+const off = document.createElement('canvas');
+const octx = off.getContext('2d');
+
+// Draw scene at t; when alpha > 0, blend the frame at tAlt on top (loop crossfade).
+window.renderFrame = (name, theme, dpr, t, tAlt, alpha, arg) => {
+  const sc = scenes[name], th = THEMES[theme];
+  for (const c of [canvas, off]) { c.width = Math.round(sc.w * dpr); c.height = Math.round(sc.h * dpr); }
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  sc.draw(ctx, t, th, arg);
+  if (alpha > 0) {
+    octx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    sc.draw(octx, tAlt, th, arg);
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.globalAlpha = alpha; ctx.drawImage(off, 0, 0); ctx.globalAlpha = 1;
+  }
+  return canvas.toDataURL('image/png');
+};
+window.ready = true;
+</script>
+</body>
+</html>
